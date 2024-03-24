@@ -6,7 +6,7 @@ spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root   #你本地的数据库用户名
-    password: 1025 #你本地的数据库密码
+    password: 123456 #你本地的数据库密码
     url: jdbc:mysql://localhost:3306/no010_takeaway?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true&useSSL=false&serverTimezone=GMT%2b8&allowPublicKeyRetrieval=true
   servlet:
     multipart:
