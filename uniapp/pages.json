@@ -1,0 +1,192 @@
+{
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "pages/index/index",
+			"style": {
+				
+			}
+		},
+		{
+			"path" : "pages/orders/orders",
+			"style" : 
+			{
+				"navigationBarTitleText" : "订单",
+				"enablePullDownRefresh" : false
+			}
+		},
+		{
+			"path" : "pages/me/me",
+			"style" : 
+			{
+				"navigationBarTitleText" : "我 的",
+				"enablePullDownRefresh" : false
+			}
+		},
+		{
+			"path" : "pages/login/login",
+			"style" : 
+			{
+				"navigationBarTitleText" : "登 录",
+				"enablePullDownRefresh" : false
+			}
+		},
+		{
+			"path" : "pages/register/register",
+			"style" : 
+			{
+				"navigationBarTitleText" : "注 册",
+				"enablePullDownRefresh" : false
+			}
+		},
+		{
+			"path" : "pages/detail/detail",
+			"style" : 
+			{
+				"navigationBarTitleText" : "商 家",
+				"enablePullDownRefresh" : false
+			}
+		},
+		{
+			"path" : "pages/confirm/confirm",
+			"style" : 
+			{
+				"navigationBarTitleText" : "确认订单",
+				"enablePullDownRefresh" : false
+			}
+		},
+		{
+			"path" : "pages/orderComment/orderComment",
+			"style" : 
+			{
+				"navigationBarTitleText" : "订单备注",
+				"enablePullDownRefresh" : false
+			}
+		},
+		{
+			"path" : "pages/address/address",
+			"style" : 
+			{
+				"navigationBarTitleText" : "收货地址",
+				"enablePullDownRefresh" : false
+			}
+		},
+		{
+			"path" : "pages/addAddress/addAddress",
+			"style" : 
+			{
+				"navigationBarTitleText" : "收货地址",
+				"enablePullDownRefresh" : false
+			}
+		},
+		{
+			"path" : "pages/ordersItem/ordersItem",
+			"style" : 
+			{
+				"navigationBarTitleText" : "订单详情",
+				"enablePullDownRefresh" : false
+			}
+		},
+		{
+			"path" : "pages/comment/comment",
+			"style" : 
+			{
+				"navigationBarTitleText" : "评 价",
+				"enablePullDownRefresh" : false
+			}
+		},
+		{
+			"path" : "pages/collect/collect",
+			"style" : 
+			{
+				"navigationBarTitleText" : "我的收藏",
+				"enablePullDownRefresh" : false
+			}
+		},
+		{
+			"path" : "pages/commentCenter/commentCenter",
+			"style" : 
+			{
+				"navigationBarTitleText" : "评价中心",
+				"enablePullDownRefresh" : false
+			}
+		},
+		{
+			"path" : "pages/aboutUs/aboutUs",
+			"style" : 
+			{
+				"navigationBarTitleText" : "关于我们",
+				"enablePullDownRefresh" : false
+			}
+		},
+		{
+			"path" : "pages/agreement/agreement",
+			"style" : 
+			{
+				"navigationBarTitleText" : "用户协议",
+				"enablePullDownRefresh" : false
+			}
+		},
+		{
+			"path" : "pages/person/person",
+			"style" : 
+			{
+				"navigationBarTitleText" : "个人信息",
+				"enablePullDownRefresh" : false
+			}
+		},
+		{
+			"path" : "pages/search/search",
+			"style" : 
+			{
+				"navigationBarTitleText" : "搜 索",
+				"enablePullDownRefresh" : false
+			}
+		},
+		{
+			"path" : "pages/categoryBusiness/categoryBusiness",
+			"style" : 
+			{
+				"navigationBarTitleText" : "商家列表",
+				"enablePullDownRefresh" : false
+			}
+		}
+	],
+	"globalStyle": {
+		// 导航栏标题颜色及状态栏前景颜色，仅支持 black/white
+		"navigationBarTextStyle": "black",
+		// 导航栏标题文字内容
+		"navigationBarTitleText": "考拉外卖",
+		// 导航栏背景颜色（同状态栏背景色）
+		"navigationBarBackgroundColor": "#ffd100",
+		//  下拉显示出来的窗口的背景色
+		"backgroundColor": "#F8F8F8"
+	},
+	"tabBar": {
+		"backgroundColor": "#fff",
+		"selectedColor": "#ffd100",
+		"color": "#666",
+		"list": [
+			{
+				"iconPath": "/static/icons/home.png",
+				"selectedIconPath": "static/icons/home-active.png",
+				"text": "首页",
+				"pagePath": "pages/index/index"
+			},
+			{
+				"iconPath": "/static/icons/orders.png",
+				"selectedIconPath": "static/icons/orders-active.png",
+				"text": "订单",
+				"pagePath": "pages/orders/orders"
+			},
+			{
+				"iconPath": "/static/icons/me.png",
+				"selectedIconPath": "static/icons/me-active.png",
+				"text": "我的",
+				"pagePath": "pages/me/me"
+			}
+		]
+	},
+	"uniIdRouter": {
+		
+	}
+}

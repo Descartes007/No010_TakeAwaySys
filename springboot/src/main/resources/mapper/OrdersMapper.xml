@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.OrdersMapper">
+
+    <sql id="Base_Column_List">
+        id
+        ,order_no,time,pay_time,status,business_id,address,phone,user_id,amount,discount,actual,comment,cover,user,name,payType
+    </sql>
+
+    <select id="selectAll" resultType="com.example.entity.Orders">
+        select
+        orders.*, business.name as businessName, user.name as userName
+        from orders
+        left join business
+        on orders.business_id = business.id
+        left join user
+        on orders.user_id = user.id
+        <where>
+            <if test="orderNo != null">and orders.order_no like concat('%', #{orderNo}, '%')</if>
+            <if test="businessId != null">and orders.business_id = #{businessId}</if>
+            <if test="userId != null">and orders.user_id = #{userId}</if>
+            <choose>
+                <when test="status == '全部'"></when>
+                <when test="status == '进行中'">
+                    and (orders.status = '待支付' or orders.status = '待发货' or orders.status = '待收货')
+                </when>
+                <when test="status == '待评价'">
+                    and orders.status = '待评价'
+                </when>
+                <when test="status == '已退款'">
+                    and orders.status = '已退款'
+                </when>
+                <when test="status != null">
+                    and orders.status = #{ status }
+                </when>
+            </choose>
+        </where>
+        order by id desc
+    </select>
+
+    <select id="selectById" resultType="com.example.entity.Orders">
+        select orders.*,
+               business.name as businessName,
+               user.name     as userName
+        from orders
+                 left join business
+                           on orders.business_id = business.id
+                 left join user
+                           on orders.user_id = user.id
+        where orders.id = #{id}
+    </select>
+
+    <delete id="deleteById">
+        delete
+        from orders
+        where id = #{id}
+    </delete>
+
+    <insert id="insert" parameterType="com.example.entity.Orders" useGeneratedKeys="true" keyProperty="id">
+        insert into orders
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">id,</if>
+            <if test="orderNo != null">order_no,</if>
+            <if test="time != null">time,</if>
+            <if test="payTime != null">pay_time,</if>
+            <if test="payType != null">pay_type,</if>
+            <if test="status != null">status,</if>
+            <if test="businessId != null">business_id,</if>
+            <if test="address != null">address,</if>
+            <if test="phone != null">phone,</if>
+            <if test="userId != null">user_id,</if>
+            <if test="amount != null">amount,</if>
+            <if test="discount != null">discount,</if>
+            <if test="actual != null">actual,</if>
+            <if test="comment != null">comment,</if>
+            <if test="cover != null">cover,</if>
+            <if test="user != null">user,</if>
+            <if test="name != null">name,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">#{id},</if>
+            <if test="orderNo != null">#{orderNo},</if>
+            <if test="time != null">#{time},</if>
+            <if test="payTime != null">#{payTime},</if>
+            <if test="payType != null">#{payType},</if>
+            <if test="status != null">#{status},</if>
+            <if test="businessId != null">#{businessId},</if>
+            <if test="address != null">#{address},</if>
+            <if test="phone != null">#{phone},</if>
+            <if test="userId != null">#{userId},</if>
+            <if test="amount != null">#{amount},</if>
+            <if test="discount != null">#{discount},</if>
+            <if test="actual != null">#{actual},</if>
+            <if test="comment != null">#{comment},</if>
+            <if test="cover != null">#{cover},</if>
+            <if test="user != null">#{user},</if>
+            <if test="name != null">#{name},</if>
+        </trim>
+    </insert>
+
+    <update id="updateById" parameterType="com.example.entity.Admin">
+        update orders
+        <set>
+            <if test="orderNo != null">
+                order_no = #{orderNo},
+            </if>
+            <if test="time != null">
+                time = #{time},
+            </if>
+            <if test="payTime != null">
+                pay_time = #{payTime},
+            </if>
+            <if test="payType != null">
+                pay_type = #{payType},
+            </if>
+            <if test="status != null">
+                status = #{status},
+            </if>
+            <if test="businessId != null">
+                business_id = #{businessId},
+            </if>
+            <if test="address != null">
+                address = #{address},
+            </if>
+            <if test="phone != null">
+                phone = #{phone},
+            </if>
+            <if test="userId != null">
+                user_id = #{userId},
+            </if>
+            <if test="amount != null">
+                amount = #{amount},
+            </if>
+            <if test="discount != null">
+                discount = #{discount},
+            </if>
+            <if test="actual != null">
+                actual = #{actual},
+            </if>
+            <if test="comment != null">
+                comment = #{comment},
+            </if>
+            <if test="cover != null">
+                cover = #{cover},
+            </if>
+            <if test="user != null">
+                user = #{user},
+            </if>
+            <if test="name != null">
+                name = #{name},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+</mapper>

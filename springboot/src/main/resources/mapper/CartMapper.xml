@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.CartMapper">
+
+    <sql id="Base_Column_List">
+        id,goods_id,num,user_id,business_id
+    </sql>
+
+    <select id="selectAll" resultType="com.example.entity.Cart">
+        select
+        <include refid="Base_Column_List" />
+        from cart
+        <where>
+            <if test="id != null"> and id = #{id}</if>
+            <if test="goodsId != null"> and goods_id = #{goodsId}</if>
+            <if test="num != null"> and num = #{num}</if>
+            <if test="userId != null"> and user_id = #{userId}</if>
+            <if test="businessId != null"> and business_id = #{businessId}</if>
+        </where>
+        order by id desc
+    </select>
+
+    <select id="selectById" resultType="com.example.entity.Cart">
+        select
+        <include refid="Base_Column_List" />
+        from cart
+        where id = #{id}
+    </select>
+
+    <delete id="deleteById">
+        delete from cart
+        where  id = #{id}
+    </delete>
+
+    <insert id="insert" parameterType="com.example.entity.Cart" useGeneratedKeys="true" keyProperty="id">
+        insert into cart
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">id,</if>
+            <if test="goodsId != null">goods_id,</if>
+            <if test="num != null">num,</if>
+            <if test="userId != null">user_id,</if>
+            <if test="businessId != null">business_id,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">#{id},</if>
+            <if test="goodsId != null">#{goodsId},</if>
+            <if test="num != null">#{num},</if>
+            <if test="userId != null">#{userId},</if>
+            <if test="businessId != null">#{businessId},</if>
+        </trim>
+    </insert>
+
+    <update id="updateById" parameterType="com.example.entity.Admin">
+        update cart
+        <set>
+            <if test="goodsId != null">
+                goods_id = #{goodsId},
+            </if>
+            <if test="num != null">
+                num = #{num},
+            </if>
+            <if test="userId != null">
+                user_id = #{userId},
+            </if>
+            <if test="businessId != null">
+                business_id = #{businessId},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+</mapper>

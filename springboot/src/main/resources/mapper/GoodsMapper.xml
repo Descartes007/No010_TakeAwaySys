@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.GoodsMapper">
+
+    <sql id="Base_Column_List">
+        id,name,price,img,descr,origin,taste,specs,date,status,discount,business_id,category_id
+    </sql>
+
+    <select id="selectAll" resultType="com.example.entity.Goods">
+        select
+        goods.*, business.name as businessName, category.name as categoryName
+        from goods
+        left join business
+        on goods.business_id = business.id
+        left join category
+        on goods.category_id = category.id
+        <where>
+            <if test="id != null"> and goods.id = #{id}</if>
+            <if test="name != null"> and goods.name like concat('%', #{name}, '%')</if>
+            <if test="businessId != null"> and goods.business_id = #{businessId}</if>
+            <if test="categoryId != null"> and goods.category_id = #{categoryId}</if>
+        </where>
+        order by id desc
+    </select>
+
+    <select id="selectById" resultType="com.example.entity.Goods">
+        select
+        <include refid="Base_Column_List" />
+        from goods
+        where id = #{id}
+    </select>
+
+    <delete id="deleteById">
+        delete from goods
+        where  id = #{id}
+    </delete>
+
+    <insert id="insert" parameterType="com.example.entity.Goods" useGeneratedKeys="true">
+        insert into goods
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">id,</if>
+            <if test="name != null">name,</if>
+            <if test="price != null">price,</if>
+            <if test="img != null">img,</if>
+            <if test="descr != null">descr,</if>
+            <if test="origin != null">origin,</if>
+            <if test="taste != null">taste,</if>
+            <if test="specs != null">specs,</if>
+            <if test="date != null">date,</if>
+            <if test="status != null">status,</if>
+            <if test="discount != null">discount,</if>
+            <if test="businessId != null">business_id,</if>
+            <if test="categoryId != null">category_id,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">#{id},</if>
+            <if test="name != null">#{name},</if>
+            <if test="price != null">#{price},</if>
+            <if test="img != null">#{img},</if>
+            <if test="descr != null">#{descr},</if>
+            <if test="origin != null">#{origin},</if>
+            <if test="taste != null">#{taste},</if>
+            <if test="specs != null">#{specs},</if>
+            <if test="date != null">#{date},</if>
+            <if test="status != null">#{status},</if>
+            <if test="discount != null">#{discount},</if>
+            <if test="businessId != null">#{businessId},</if>
+            <if test="categoryId != null">#{categoryId},</if>
+        </trim>
+    </insert>
+
+    <update id="updateById" parameterType="com.example.entity.Admin">
+        update goods
+        <set>
+            <if test="name != null">
+                name = #{name},
+            </if>
+            <if test="price != null">
+                price = #{price},
+            </if>
+            <if test="img != null">
+                img = #{img},
+            </if>
+            <if test="descr != null">
+                descr = #{descr},
+            </if>
+            <if test="origin != null">
+                origin = #{origin},
+            </if>
+            <if test="taste != null">
+                taste = #{taste},
+            </if>
+            <if test="specs != null">
+                specs = #{specs},
+            </if>
+            <if test="date != null">
+                date = #{date},
+            </if>
+            <if test="status != null">
+                status = #{status},
+            </if>
+            <if test="discount != null">
+                discount = #{discount},
+            </if>
+            <if test="businessId != null">
+                business_id = #{businessId},
+            </if>
+            <if test="categoryId != null">
+                category_id = #{categoryId},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+</mapper>

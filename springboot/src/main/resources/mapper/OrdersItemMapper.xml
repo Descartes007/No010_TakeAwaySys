@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.OrdersItemMapper">
+
+    <sql id="Base_Column_List">
+        id,order_id,goods_name,goods_img,price,num,goods_id
+    </sql>
+
+    <select id="selectAll" resultType="com.example.entity.OrdersItem">
+        select
+        <include refid="Base_Column_List" />
+        from orders_item
+        <where>
+            <if test="id != null"> and id = #{id}</if>
+            <if test="orderId != null"> and order_id = #{orderId}</if>
+            <if test="goodsName != null"> and goods_name = #{goodsName}</if>
+            <if test="goodsImg != null"> and goods_img like concat('%', #{goodsImg}, '%')</if>
+            <if test="price != null"> and price = #{price}</if>
+            <if test="num != null"> and num = #{num}</if>
+        </where>
+        order by id desc
+    </select>
+
+    <select id="selectById" resultType="com.example.entity.OrdersItem">
+        select
+        <include refid="Base_Column_List" />
+        from orders_item
+        where id = #{id}
+    </select>
+
+    <delete id="deleteById">
+        delete from orders_item
+        where  id = #{id}
+    </delete>
+
+    <insert id="insert" parameterType="com.example.entity.OrdersItem" useGeneratedKeys="true">
+        insert into orders_item
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">id,</if>
+            <if test="orderId != null">order_id,</if>
+            <if test="goodsName != null">goods_name,</if>
+            <if test="goodsImg != null">goods_img,</if>
+            <if test="price != null">price,</if>
+            <if test="num != null">num,</if>
+            <if test="goodsId != null">goods_id,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">#{id},</if>
+            <if test="orderId != null">#{orderId},</if>
+            <if test="goodsName != null">#{goodsName},</if>
+            <if test="goodsImg != null">#{goodsImg},</if>
+            <if test="price != null">#{price},</if>
+            <if test="num != null">#{num},</if>
+            <if test="goodsId != null">#{goodsId},</if>
+        </trim>
+    </insert>
+
+    <update id="updateById" parameterType="com.example.entity.Admin">
+        update orders_item
+        <set>
+            <if test="orderId != null">
+                order_id = #{orderId},
+            </if>
+            <if test="goodsName != null">
+                goods_name = #{goodsName},
+            </if>
+            <if test="goodsImg != null">
+                goods_img = #{goodsImg},
+            </if>
+            <if test="price != null">
+                price = #{price},
+            </if>
+            <if test="num != null">
+                num = #{num},
+            </if>
+            <if test="goodsId != null">
+                goods_id = #{goodsId},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+</mapper>
