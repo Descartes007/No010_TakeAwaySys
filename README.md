@@ -1,6 +1,6 @@
 <p><h1 align="center">基于SSM的外卖点餐小程序（Uniapp实现）</h1></p>
 
-<p> 获取sql文件 QQ: 386869957 QQ群: 377586148 </p>
+<p> 获取sql文件 QQ: 605739993 QQ群: 377586148 </p>
 <p> [个人站点: 从戎源码网](https://armycodes.com/)</p>
 
 ## 简介
